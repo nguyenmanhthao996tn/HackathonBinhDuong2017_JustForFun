@@ -38,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent startBluethoothServiceIntent = new Intent(this, WSManagerService.class);
+        startService(startBluethoothServiceIntent);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 

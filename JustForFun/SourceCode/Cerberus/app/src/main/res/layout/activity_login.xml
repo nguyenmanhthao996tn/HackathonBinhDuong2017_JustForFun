@@ -1,60 +1,84 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundfhd"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/main_icon_176x200" />
 
-    <EditText
-        android:id="@+id/etUsername"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/username" />
 
-    <EditText
-        android:id="@+id/etPassword"
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPassword" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/password" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPassword"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
     <CheckBox
         android:id="@+id/chkRemember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Keep me signed in" />
+        android:layout_marginBottom="50dp"
+        android:text="Keep me signed in"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/bntLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="bntLogin"
-        android:text="Login" />
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:text="New to Cerberus?"
-        android:textStyle="italic" />
+        android:layout_marginBottom="10dp"
+        android:background="#70003c6c"
+        android:onClick="bntLogin"
+        android:text="sign in"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/bntRegister"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="80dp"
-        android:text="Create new account" />
+        android:background="#70003c6c"
+        android:text="Sign up"
+        android:textColor="@color/white" />
 
 </LinearLayout>

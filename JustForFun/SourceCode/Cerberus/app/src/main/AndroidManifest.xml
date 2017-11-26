@@ -44,6 +44,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <service
+            android:name=".WSManagerService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ShowParkingMap"></activity>
     </application>
 
 </manifest>

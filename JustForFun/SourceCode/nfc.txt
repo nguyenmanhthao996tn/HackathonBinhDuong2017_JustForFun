@@ -1,0 +1,337 @@
+
+const WebSocket = require("ws");
+const wss = new WebSocket.Server({ port: 8080 });
+var slot = new Array();
+slot[0] = new Array({ "stt": "empty", "slot":0 }, { "stt": "empty", "slot":1 }, { "stt": "empty", "slot":2 }, { "stt": "empty", "slot":3 }, { "stt": "empty", "slot":4 },
+  { "stt": "empty", "slot":5 }, { "stt": "empty", "slot":6 }, { "stt": "empty", "slot":7 }, { "stt": "empty", "slot":8 }, { "stt": "empty", "slot":9 },
+  { "stt": "empty", "slot":10 }, { "stt": "empty", "slot":11 }, { "stt": "empty", "slot":12}, { "stt": "empty", "slot":13 }, { "stt": "empty", "slot":14 },
+  { "stt": "empty", "slot":15 }, { "stt": "empty", "slot":16 }, { "stt": "empty", "slot":17}, { "stt": "empty", "slot":18 }, { "stt": "empty", "slot":19 },
+  { "stt": "empty", "slot":20 }, { "stt": "empty", "slot":21}, { "stt": "empty" , "slot":22}, { "stt": "empty", "slot":23 }, { "stt": "empty", "slot":24 });
+slot[1] = new Array({ "stt": "empty", "slot":0 }, { "stt": "empty", "slot":1 }, { "stt": "empty", "slot":2 }, { "stt": "empty", "slot":3 }, { "stt": "empty", "slot":4 },
+{ "stt": "empty", "slot":5 }, { "stt": "empty", "slot":6 }, { "stt": "empty", "slot":7 }, { "stt": "empty", "slot":8 }, { "stt": "empty", "slot":9 },
+{ "stt": "empty", "slot":10 }, { "stt": "empty", "slot":11 }, { "stt": "empty", "slot":12}, { "stt": "empty", "slot":13 }, { "stt": "empty", "slot":14 },
+{ "stt": "empty", "slot":15 }, { "stt": "empty", "slot":16 }, { "stt": "empty", "slot":17}, { "stt": "empty", "slot":18 }, { "stt": "empty", "slot":19 },
+{ "stt": "empty", "slot":20 }, { "stt": "empty", "slot":21}, { "stt": "empty" , "slot":22}, { "stt": "empty", "slot":23 }, { "stt": "empty", "slot":24 });
+slot[2] = new Array({ "stt": "empty", "slot":0 }, { "stt": "empty", "slot":1 }, { "stt": "empty", "slot":2 }, { "stt": "empty", "slot":3 }, { "stt": "empty", "slot":4 },
+{ "stt": "empty", "slot":5 }, { "stt": "empty", "slot":6 }, { "stt": "empty", "slot":7 }, { "stt": "empty", "slot":8 }, { "stt": "empty", "slot":9 },
+{ "stt": "empty", "slot":10 }, { "stt": "empty", "slot":11 }, { "stt": "empty", "slot":12}, { "stt": "empty", "slot":13 }, { "stt": "empty", "slot":14 },
+{ "stt": "empty", "slot":15 }, { "stt": "empty", "slot":16 }, { "stt": "empty", "slot":17}, { "stt": "empty", "slot":18 }, { "stt": "empty", "slot":19 },
+{ "stt": "empty", "slot":20 }, { "stt": "empty", "slot":21}, { "stt": "empty" , "slot":22}, { "stt": "empty", "slot":23 }, { "stt": "empty", "slot":24 });
+slot[3] = new Array({ "stt": "empty", "slot":0 }, { "stt": "empty", "slot":1 }, { "stt": "empty", "slot":2 }, { "stt": "empty", "slot":3 }, { "stt": "empty", "slot":4 },
+{ "stt": "empty", "slot":5 }, { "stt": "empty", "slot":6 }, { "stt": "empty", "slot":7 }, { "stt": "empty", "slot":8 }, { "stt": "empty", "slot":9 },
+{ "stt": "empty", "slot":10 }, { "stt": "empty", "slot":11 }, { "stt": "empty", "slot":12}, { "stt": "empty", "slot":13 }, { "stt": "empty", "slot":14 },
+{ "stt": "empty", "slot":15 }, { "stt": "empty", "slot":16 }, { "stt": "empty", "slot":17}, { "stt": "empty", "slot":18 }, { "stt": "empty", "slot":19 },
+{ "stt": "empty", "slot":20 }, { "stt": "empty", "slot":21}, { "stt": "empty" , "slot":22}, { "stt": "empty", "slot":23 }, { "stt": "empty", "slot":24 });
+slot[4] = new Array({ "stt": "empty", "slot":0 }, { "stt": "empty", "slot":1 }, { "stt": "empty", "slot":2 }, { "stt": "empty", "slot":3 }, { "stt": "empty", "slot":4 },
+{ "stt": "empty", "slot":5 }, { "stt": "empty", "slot":6 }, { "stt": "empty", "slot":7 }, { "stt": "empty", "slot":8 }, { "stt": "empty", "slot":9 },
+{ "stt": "empty", "slot":10 }, { "stt": "empty", "slot":11 }, { "stt": "empty", "slot":12}, { "stt": "empty", "slot":13 }, { "stt": "empty", "slot":14 },
+{ "stt": "empty", "slot":15 }, { "stt": "empty", "slot":16 }, { "stt": "empty", "slot":17}, { "stt": "empty", "slot":18 }, { "stt": "empty", "slot":19 },
+{ "stt": "empty", "slot":20 }, { "stt": "empty", "slot":21}, { "stt": "empty" , "slot":22}, { "stt": "empty", "slot":23 }, { "stt": "empty", "slot":24 });
+var parking = new Array({ "id": "0", "name": "Cerburs", "amout": 25, "blank": 25, "price": "5000d/h" },
+  { "id": "1", "name": "Nue", "amout": 25, "blank": 25, "price": "5000d/h" },
+  { "id": "2", "name": "Typhon", "amout": 25, "blank": 25, "price": "10000d/h" },
+  { "id": "3", "name": "Minotaur", "amout": 25, "blank": 25, "price": "15000d/h" },
+  { "id": "4", "name": "Minotaur", "amout": 25, "blank": 25, "price": "8000d/h" });
+var json
+var price
+var noti = { "type": "bookFail" };
+
+wss.on("connection", function connection(ws) {
+  ws.on("message", function incoming(message) {
+    try {
+      json = JSON.parse(message);
+      switch (json.id) {
+        case 0:
+          if (json.act == "booking") {
+            for (var i = 0; i < 25; i++) {
+              if (slot[0][i].stt == "empty") {
+                slot[0][i] = { "uid": json.uid, "time": new Date(), "stt": "booked", "slot":i };
+                parking[0].blank--;
+                setTimeout(function () {
+                  if (slot[0][i].stt == "booked") {
+                    slot[0][i] = { "stt": "empty" };
+                    parking[0].blank++;
+                    console.log(noti);
+                    ws.send(JSON.stringify(noti));
+                    ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                  }
+                }, 30000);
+                ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                break;
+              }
+            }
+          }
+
+          // if (json.act == "parking") {
+          //   for (var i = 0; i < 25; i++) {
+          //     if (slot[0][i].stt != "empty") {
+          //       if (json.uid == slot[0][i].uid) {
+          //         console.log(0);
+          //         if (slot[0][i].stt == "booked") {
+          //           slot[0][i].stt = "pending";
+          //           setTimeout(function () {
+          //             slot[0][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         } else if (slot[0][i].stt == "parked") {
+          //           parking[0].blank++;{ "notification": "bookFail" }
+          //           price = (new Date().getMinutes() - slot[0][i].time.getMinutes()) * 5000;
+          //           ws.send(JSON.stringify({"type":"price","money":price}))
+          //           console.log(price);
+          //           break;
+          //         } else {
+          //           slot[0][i] = { "uid": json.uid, "time": new Date(), "stt": "pending" };
+          //           parking[0].blank--;
+          //           setTimeout(function () {
+          //             slot[0][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         }
+          //       }
+          //     }
+          //   }
+          //   ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          // }
+
+          break;
+        case 1:
+          if (json.act == "booking") {
+            for (var i = 0; i < 25; i++) {
+              if (slot[1][i].stt == "empty") {
+                slot[1][i] = { "uid": json.uid, "time": new Date(), "stt": "booked", "slot":i };
+                parking[1].blank--;
+                setTimeout(function () {
+                  if (slot[1][i].stt == "booked") {
+                    slot[1][i] = { "stt": "empty" };
+                    parking[1].blank++;
+                    console.log(noti);
+                    ws.send(JSON.stringify(noti));
+                    ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                  }
+                }, 30000);
+                ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                break;
+              }
+            }
+          }
+
+          // if (json.act == "parking") {{ "notification": "bookFail" }
+          //   for (var i = 0; i < 25; i++) {
+          //     if (slot[1][i].stt != "empty") {
+          //       if (json.uid == slot[0][i].uid) {
+          //         console.log(0);
+          //         if (slot[1][i].stt == "booked") {
+          //           slot[1][i].stt = "pending";
+          //           setTimeout(function () {
+          //             slot[1][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         } else if (slot[1][i].stt == "parked") {
+          //           parking[1].blank++;
+          //           price = (new Date().getMinutes() - slot[1][i].time.getMinutes()) * 5000;
+          //           ws.send(JSON.stringify({"type":"price","money":price}))
+          //           console.log(price);
+          //           break;
+          //         } else {
+          //           slot[1][i] = { "uid": json.uid, "time": new Date(), "stt": "pending" };
+          //           parking[1].blank--;
+          //           setTimeout(function () {
+          //             slot[1][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         }
+          //       }
+          //     }
+          //   }
+          //   ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          // }
+          break;
+        case 2:
+          if (json.act == "booking") {
+            for (var i = 0; i < 25; i++) {
+              if (slot[2][i].stt == "empty") {
+                slot[2][i] = { "uid": json.uid, "time": new Date(), "stt": "booked", "slot":i };
+                parking[2].blank--;
+                setTimeout(function () {
+                  if (slot[2][i].stt == "booked") {
+                    slot[2][i] = { "stt": "empty" };
+                    parking[2].blank++;
+                    console.log(noti);
+                    ws.send(JSON.stringify(noti));
+                    ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                  }
+                }, 30000);
+                ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                break;
+              }
+            }
+          }
+
+          // if (json.act == "parking") {
+          //   for (var i = 0; i < 25; i++) {
+          //     if (slot[2][i].stt != "empty") {
+          //       if (json.uid == slot[2][i].uid) {{ "notification": "bookFail" }
+          //         console.log(0);
+          //         if (slot[2][i].stt == "booked") {
+          //           slot[2][i].stt = "pending";
+          //           setTimeout(function () {
+          //             slot[2][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         } else if (slot[2][i].stt == "parked") {
+          //           parking[2].blank++;
+          //           price = (new Date().getMinutes() - slot[2][i].time.getMinutes()) * 5000;
+          //           ws.send(JSON.stringify({"type":"price","money":price}))
+          //           console.log(price);
+          //           break;
+          //         } else {
+          //           slot[2][i] = { "uid": json.uid, "time": new Date(), "stt": "pending" };
+          //           parking[2].blank--;
+          //           setTimeout(function () {
+          //             slot[2][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         }
+          //       }
+          //     }
+          //   }
+          //   ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          // }
+
+          break;
+        case 3:
+          if (json.act == "booking") {
+            for (var i = 0; i < 25; i++) {
+              if (slot[3][i].stt == "empty") {
+                slot[3][i] = { "uid": json.uid, "time": new Date(), "stt": "booked", "slot":i };
+                parking[3].blank--;
+                setTimeout(function () {
+                  if (slot[3][i].stt == "booked") {
+                    slot[3][i] = { "stt": "empty" };
+                    parking[3].blank++;
+                    console.log(noti);
+                    ws.send(JSON.stringify(noti));
+                    ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                  }
+                }, 30000);
+                ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                break;
+              }
+            }
+          }
+
+          // if (json.act == "parking") {
+          //   for (var i = 0; i < 25; i++) {
+          //     if (slot[3][i].stt != "empty") {
+          //       if (json.uid == slot[0][i].uid) {
+          //         console.log(0);{ "notification": "bookFail" }
+          //         if (slot[3][i].stt == "booked") {
+          //           slot[3][i].stt = "pending";
+          //           setTimeout(function () {
+          //             slot[3][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;
+          //         } else if (slot[3][i].stt == "parked") {
+          //           parking[3].blank++;
+          //           price = (new Date().getMinutes() - slot[3][i].time.getMinutes()) * 5000;
+          //           ws.send(JSON.stringify({"type":"price","money":price}))
+          //           console.log(price);
+          //           break;
+          //         } else {
+          //           slot[3][i] = { "uid": json.uid, "time": new Date(), "stt": "pending" };
+          //           parking[3].blank--;
+          //           setTimeout(function () {
+          //             slot[3][i].stt = "parked";
+          //             ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          //           }, 30000)
+          //           break;{ "notification": "bookFail" }
+          //         }
+          //       }
+          //     }
+          //   }
+          //   ws.send(JSON.stringify({"type":"sendmap","data":slot[4]}));
+          // }
+
+          break;
+        case 4:
+          if (json.act == "booking") {
+            for (var i = 0; i < 25; i++) {
+              if (slot[4][i].stt == "empty") {
+                slot[4][i] = { "uid": json.uid, "time": new Date(), "stt": "booked", "slot":i };
+                parking[4].blank--;
+                setTimeout(function () {
+                  if (slot[4][i].stt == "booked") {
+                    slot[4][i] = { "stt": "empty"};
+                    parking[4].blank++;
+                    console.log(noti);
+                    //ws.send(JSON.stringify(noti));
+                    ws.send(JSON.stringify({ "type": "sendmap", "data": slot[4] }));
+                    //ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                  }
+                }, 30000);
+                ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+                break;
+              }
+            }
+          }
+          if (json.act == "parking") {
+            for (var i = 0; i < 25; i++) {
+              if (slot[4][i].stt != "empty") {
+                if (json.uid == slot[4][i].uid) {
+                  if (slot[4][i].stt == "booked") {
+                    slot[4][i].stt = "pending";
+                    console.log("vao co book");
+                    console.log(parking);
+                    setTimeout(function () {
+                      slot[4][i].stt = "parked";
+                      ws.send(JSON.stringify({ "type": "sendmap", "data": slot[4]}));
+                      console.log(parking);
+                    }, 10000)
+                    return;
+                  } else if (slot[4][i].stt == "parked") {
+                    console.log("ra");
+                    parking[4].blank++;
+                    
+                    price = (new Date().getMinutes() - slot[4][i].time.getMinutes()) * 8000;
+                    slot[4][i] = { "stt": "empty" };
+                    ws.send(JSON.stringify({"type":"price","money":price}))
+                    console.log(price);
+                    return;
+                  }
+                }
+              }
+            }
+            for (var i = 0; i < 25; i++) {
+              if (slot[4][i].stt == "empty") {
+                console.log("vao khong book");
+                slot[4][i] = { "uid": json.uid, "time": new Date(), "stt": "pending" };
+                parking[4].blank--;
+                console.log(parking);
+                setTimeout(function () {
+                  slot[4][i].stt = "parked";
+                  ws.send(JSON.stringify({ "type": "sendmap", "data": slot[4]}));
+                  console.log(parking);
+                }, 10000)
+                break;
+              }
+            }
+            ws.send(JSON.stringify({ "type": "sendmap", "data": slot[4]}));
+          }
+
+          break;
+      }
+      if (json.act == "login") {
+        ws.send(JSON.stringify({ "type": "booking", "data": parking }));
+      }
+    } catch (error) {
+      console.log(message);
+    }
+  });
+});

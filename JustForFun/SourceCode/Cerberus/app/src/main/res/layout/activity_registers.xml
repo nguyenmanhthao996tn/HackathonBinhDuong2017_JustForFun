@@ -3,36 +3,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
+    android:background="@drawable/backgroundfhd"
     android:padding="10dp">
 
     <TextView
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username" />
 
     <EditText
+        android:textColor="#ffffff"
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp" />
 
     <TextView
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name " />
 
     <EditText
+        android:textColor="#ffffff"
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp" />
 
     <TextView
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age" />
 
     <EditText
+        android:textColor="#ffffff"
         android:id="@+id/etAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,11 +48,13 @@
 
 
     <TextView
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password" />
 
     <EditText
+        android:textColor="#ffffff"
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,11 +62,13 @@
         android:inputType="textPassword" />
 
     <TextView
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirm Password" />
 
     <EditText
+        android:textColor="#ffffff"
         android:id="@+id/etConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,6 +79,9 @@
         android:id="@+id/bntRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="REGISTER" />
+        android:background="#70003c6c"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="80dp"
+        android:text="Sign up" />
 
 </LinearLayout>
